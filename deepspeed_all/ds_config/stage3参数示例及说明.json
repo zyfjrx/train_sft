@@ -1,0 +1,61 @@
+{
+    "fp16": {
+        "enabled": true,
+        "auto_cast": false,
+        "loss_scale": 0,
+        "initial_scale_power": 32,
+        "loss_scale_window": 1000,
+        "hysteresis": 2,
+        "min_loss_scale": 1
+    },
+    "optimizer": {
+		# 优化器类型
+        "type": "AdamW",
+		# 优化器参数
+        "params": {
+          "lr": "auto",
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-8,
+          "weight_decay": "auto"
+        }
+    },
+    "zero_optimization": {
+        "stage": 3,
+        # 启用将优化器状态卸载到 CPU 或 NVMe，并将优化器计算卸载到 CPU。这可以为更大的模型或批量大小释放 GPU 内存。适用于 ZeRO 阶段 1、2、3。
+        "offload_optimizer": {
+            "device": "cpu",
+            "pin_memory": true
+        },
+        # 启用和配置参数卸载到 CPU 或 NVMe，仅适用于 ZeRO stage 3。请注意，如果未指定或不支持“device”的值，则会触发异常。
+        "offload_param": {
+            "device": "cpu",
+            "pin_memory": true,
+            "max_in_cpu": 1.4e10
+        },
+        # 尝试将梯度的更新与反向传播重叠进行
+        "overlap_comm": true,
+        # 在生成梯度时将其复制到连续的缓冲区，避免向后传递期间出现内存碎片。
+        "contiguous_gradients": true,
+        # 用于预取参数的固定缓冲区的大小
+        # 较小的值使用较少的内存，但可能会因通信而增加停顿。
+        "stage3_prefetch_bucket_size": "auto",
+        # 不对小于这个阈值的参数进行partition
+        # 较小的数值使用的内存更少，但可能会极大地增加通讯负担
+        "stage3_param_persistence_threshold": "auto",
+        # 每个 GPU 驻留的最大参数量
+        # 较小的数值使用的内存更少，但需要进行更多的通讯
+         "stage3_max_live_parameters": 0,
+        # 如果参数在这个阈值范围内会被复用，不会被释放
+        # 较小的数值使用的内存更少，但需要进行更多的通讯
+        "stage3_max_reuse_distance": 0,
+        # 在通过 save_16bit_model() 保存模型之前合并权重
+        # 由于权重在 GPU 之间进行 partition，启用此选项时该函数会自动收集权重，然后保存 fp16 模型权重。
+        "stage3_gather_16bit_weights_on_model_save": true
+    },
+    "train_batch_size": "auto",
+    "train_micro_batch_size_per_gpu": "auto",
+    "wall_clock_breakdown": false
+}
