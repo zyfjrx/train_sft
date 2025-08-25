@@ -1,0 +1,10 @@
+data
+lora_unsloth/unsloth_compiled_cache
+lora_unsloth/unsloth_training_checkpoints
+lora_unsloth/trainer_output
+lora_unsloth/outputs
+lora_unsloth_pet/unsloth_compiled_cache
+lora_unsloth_pet/unsloth_training_checkpoints
+lora_unsloth_pet/trainer_output
+lora_unsloth_pet/outputs
+outputs/*
