@@ -8,3 +8,6 @@ lora_unsloth_pet/unsloth_training_checkpoints
 lora_unsloth_pet/trainer_output
 lora_unsloth_pet/outputs
 outputs/*
+vllm.log
+lora_unsloth_pet/eval_0827.log
+lora_unsloth_pet/eval_sft_0826.log
