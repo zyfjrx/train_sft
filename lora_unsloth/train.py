@@ -2,7 +2,6 @@ from unsloth import FastLanguageModel
 from trl import SFTTrainer, SFTConfig
 from datasets import load_dataset
 import torch
-
 """
 nohup python train.py >20250818_1.log 2>&1 &
 """

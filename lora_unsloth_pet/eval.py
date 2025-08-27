@@ -24,5 +24,6 @@ task_cfg = TaskConfig(
     stream=True,  # 是否使用流式输出
     limit=10000,  # 设置为200条数据进行测试
     analysis_report=True,
+    use_cache="/root/train/train_sft/lora_unsloth_pet/outputs/20250826_172618"
 )
 run_task(task_cfg=task_cfg)
