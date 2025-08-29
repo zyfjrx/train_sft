@@ -12,7 +12,7 @@ python scripts/stat_utils/length_cdf.py --model_name_or_path /root/sft/Qwen3-14B
 
 # ============== 1、加载模型、tokenizer ====================================
 local_model_path = '/root/sft/Qwen3-14B'
-dataset_path = "/root/train/unsloth/data/pet/distill"
+dataset_path = "/root/train/train_sft/data/pet/distill"
 
 model, tokenizer = FastLanguageModel.from_pretrained(
     model_name=local_model_path,
